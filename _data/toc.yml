@@ -1,0 +1,23 @@
+# Add a header and sample content section
+- header: Content
+
+# Top-level page
+- title: Introduction
+  url: /intro
+  not_numbered: true
+
+# A chapter w/ a collection of sections beneath it
+- title: Abstract
+  url: /abstract
+  not_numbered: true
+   
+- title: Code Example
+  url: /python/interactive_figures
+  not_numbered: true
+  
+- divider: true
+
+- title: GitHub repository
+  url: https://github.com/cmr-group/gropt
+  external: true
+  not_numbered: true

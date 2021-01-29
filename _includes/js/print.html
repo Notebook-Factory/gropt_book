@@ -1,0 +1,100 @@
+<!-- Include nbinteract for interactive widgets -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js" async></script>
+<script>
+printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "{{ site.css_url | relative_url }}/styles.css",
+        style: "#textbook_content {padding-top: 40px};",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: ignoreAssistList,
+        documentTitle: "{{ site.download_page_header }}"
+    })
+};
+
+
+showhide = () => {
+console.log(document.getElementsByClassName("thebelab-cell"));
+console.log(document.getElementsByClassName("thebelab-cell")[0]);
+ if(document.getElementsByClassName("thebelab-cell")[0]!=undefined)
+ {
+     var els = document.getElementsByClassName("thebelab-cell");
+  Array.prototype.forEach.call(els, function(el) {
+     if (el.style.display === "none") {
+
+         el.style.display = "block";
+
+    }
+     else {
+
+        el.style.display = "none";
+
+  }
+
+});
+ }
+
+ else {
+
+
+     var els = document.getElementsByClassName("input");
+     Array.prototype.forEach.call(els, function (el) {
+         if (el.style.display === "none") {
+             document.getElementsByClassName("output")[0].children[0].style.display = "block";
+             el.style.display = "block";
+
+         } else {
+             document.getElementsByClassName("output")[0].children[0].style.display = "none";
+
+             el.style.display = "none";
+
+         }
+
+     });
+
+ }
+
+};
+
+initPrint = () => {
+
+    var els = document.getElementsByClassName("input");
+  Array.prototype.forEach.call(els, function(el) {
+
+        el.style.display = "none";
+
+});
+
+
+  var els = document.getElementsByClassName("svg-container");
+  Array.prototype.forEach.call(els, function(el) {
+
+        el.style.zIndex = "0";
+        el.style.marginTop = "1%";
+
+});
+
+    <!-- document.querySelector('#interact-button-print').addEventListener('click', printContent) -->
+    document.querySelector('#toggle-code-button').addEventListener('click', showhide)
+
+    var els = document.getElementsByClassName("output")[0].children[0].style.display = "none";
+
+}
+
+
+
+
+initFunction(initPrint)
+</script>
