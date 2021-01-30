@@ -1,7 +1,7 @@
 ## GrOpt
 
 ### Gradient Optimization Toolbox 
-#### Written in C (for compiling on scanners), with wrappers in Python and Matlab for prototyping
+**Written in C (for compiling on scanners), with wrappers in Python and Matlab for prototyping**
 
 Ideally **_any_** waveform can be described by a set of constraints
 
