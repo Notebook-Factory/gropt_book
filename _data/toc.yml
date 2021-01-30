@@ -11,12 +11,13 @@
   url: /abstract
   not_numbered: true
    
-- url: /code-examples/00
+- header: Code Examples
+
+- url: /code-examples/demo-diffusion
   not_numbered: true
-  expand_sections: false
-  sections:
-    - url: /code-examples/demo-diffusion
-    - url: /code-examples/demo-3-axis
+
+- url: /code-examples/demo-3-axis
+  not_numbered: true
   
 - divider: true
 
