@@ -57,7 +57,7 @@ number_equations: false                 # Whether to automatically number all bl
 # Interact link settings
 
 # General interact settings
-use_jupyterlab: false                     # If 'true', interact links will use JupyterLab as the interface
+use_jupyterlab: true                     # If 'true', interact links will use JupyterLab as the interface
 
 # Jupyterhub link settings
 use_jupyterhub_button: false              # If 'true', display a button that will direct users to a JupyterHub (that you provide)
