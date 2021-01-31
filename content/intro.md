@@ -1,5 +1,4 @@
-
-<img src="images/mrm_v84_6.gif" style="width:114px;height:150;"  align="right">
+<img src="images/mrm_v84_6.gif" style="width:114px;height:auto;margin: 0 20px;"  align="right">
 
 Welcome to an interactive Jupyter Book for the Magnetic Resonance in Medicine paper by Michael Loecher et al. entitled "[*A gradient optimization toolbox for general purpose time‐optimal MRI gradient waveform design*](https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.28384)".
 
