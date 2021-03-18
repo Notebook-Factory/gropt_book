@@ -18,8 +18,6 @@
   sections:
     - url: /code-examples/demo-phase-encoding
     - url: /code-examples/demo-diffusion-encoding
-    - url: /code-examples/demo-free
-    - url: /code-examples/demo-diffusion
     - url: /code-examples/demo-3-axis
   
 - divider: true
