@@ -1,0 +1,14 @@
+- part: Content
+  chapters:
+  - file: intro
+  - file: abstract
+  - file: desc
+    sections:
+    - file: demo-phase-encoding
+    - file: demo-diffusion-encoding
+    - file: demo-3-axis
+  
+- part: External Resources
+  chapters:
+  - title: GitHub Repository
+    url: https://github.com/cmr-group/gropt
