@@ -10,7 +10,7 @@ only_build_toc_files: true
 
 
 html:
-  favicon                   : images/favicon.ico
+  favicon                   : images/gropt_icon.ico
   use_edit_page_button      : true  
   use_repository_button     : true  
   use_issues_button         : true  
