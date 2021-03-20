@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; My sample book</title>
+    <title>Index &#8212; A gradient optimization toolbox for general purpose time-optimal MRI gradient waveform design</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -47,11 +47,12 @@
     <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/gropt_icon.ico"/>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
 
@@ -72,10 +73,10 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/logo.png" class="logo" alt="logo">
+  <img src="_static/gropt_logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">My sample book</h1>
+  <h1 class="site-logo" id="site-title">A gradient optimization toolbox for general purpose time-optimal MRI gradient waveform design</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -86,29 +87,58 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   Welcome to your Jupyter Book
+   Introduction
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Content
+ </span>
+</p>
 <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="content.html">
-   Content in Jupyter Book
+  <a class="reference internal" href="desc.html">
+   Code Examples
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="markdown.html">
-     Markdown Files
+    <a class="reference internal" href="demo-phase-encoding.html">
+     Phase Encoding Gradients Example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="notebooks.html">
-     Content with notebooks
+    <a class="reference internal" href="demo-diffusion-encoding.html">
+     Diffusion Encoding Gradients Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="demo-3-axis.html">
+     3 Axis Example
     </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  External Resources
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/cmr-group/gropt">
+   GitHub Repository
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
  </li>
 </ul>
 
@@ -204,7 +234,7 @@
     <div class="container">
       <p>
         
-          By The Jupyter Book Community<br/>
+          By Michael Loecher<br/>
         
             &copy; Copyright 2020.<br/>
       </p>

@@ -1,14 +1,21 @@
-- part: Content
+- file: intro
+  title: "Introduction"
+
+- part: "Content"
   chapters:
-  - file: intro
   - file: abstract
+    title: "Abstract"
   - file: desc
+    title: "Code Examples"
     sections:
     - file: demo-phase-encoding
+      title: "Phase Encoding Gradients Example"
     - file: demo-diffusion-encoding
+      title: "Diffusion Encoding Gradients Example"
     - file: demo-3-axis
+      title: "3 Axis Example"
   
-- part: External Resources
+- part: "External Resources"
   chapters:
-  - title: GitHub Repository
-    url: https://github.com/cmr-group/gropt
+  - url: https://github.com/cmr-group/gropt
+    title: "GitHub Repository"
