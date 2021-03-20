@@ -8,24 +8,38 @@ execute:
 
 only_build_toc_files: true 
 
-latex:
-  latex_documents:
-    targetname: book.tex
-
-bibtex_bibfiles:
-  - references.bib
-
-repository:
-  url: https://github.com/executablebooks/jupyter-book  
-  branch: main  
 
 html:
-  favicon: images/gropt_icon.ico
-  use_edit_page_button: true
-  use_issues_button: true
-  use_repository_button: true
+  favicon                   : images/favicon.ico
+  use_edit_page_button      : true  
+  use_repository_button     : true  
+  use_issues_button         : true  
+  extra_navbar              : Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  
+  home_page_in_navbar       : true  
+  baseurl                   : ""  
+  comments:
+    hypothesis              : true
+
 
 launch_buttons:
   notebook_interface        : "jupyterlab"  
   binderhub_url             : "https://mybinder.org"
   thebe                     : true  
+
+repository:
+  url                       : https://github.com/Notebook-Factory/gropt_book
+  branch                    : main  
+
+parse:
+  myst_enable_extensions:
+    - html_image
+    - amsmath
+    - colon_fence
+    - deflist 
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify 
+    - replacements
+    - smartquotes
+    - substitution
