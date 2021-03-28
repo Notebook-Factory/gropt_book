@@ -26,6 +26,9 @@ from timeit import default_timer as timer
 - Zero and second gradient moment = 11.74 (mT*ms)/m , first gradient moment = -11.74
 - Number of axis set to 3
 
+G_list = []
+params_list = []
+
 params = {}
 params['mode'] = 'free'
 params['gmax']  = 0.05
@@ -38,10 +41,13 @@ params['dt']  = 20e-6
 params['Naxis'] = 3
 
 G, dd = gropt.gropt(params, verbose=1)
+G_list.append(G)
+params_list.append(params)
 
 fig = plot_waveform_interactive(G, params, eddy_lines=[50], width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
+# fig.show()
 
 ### Lower the maximum gradient amplitude and amp up the maximum slew rate, double dt but cut TE in half
 
@@ -57,10 +63,13 @@ params['dt']  = 10e-6
 params['Naxis'] = 3
 
 G, dd = gropt.gropt(params, verbose=1)
+G_list.append(G)
+params_list.append(params)
 
 fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
+# fig.show()
 
 ### Constraining the peripheral nerve stimulation control to be less than 1 while boosting TE to 0.675
 
@@ -77,8 +86,11 @@ params['Naxis'] = 3
 params['pns_thresh'] = 1.0
 
 G, dd = gropt.gropt(params, verbose=1)
+G_list.append(G)
+params_list.append(params)
 
 fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
+# fig.show()
 
