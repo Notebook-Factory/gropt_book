@@ -156,7 +156,7 @@ display(HTML('fig.html'))
 
 ## Flow encoding bipolar
 
-Basically the opposite of the previous waveform.  $M_0 = 0$ and $M_1 = 11.74$.
+$M_0 = 0$ and $M_1 = 11.74$.
 
 params = {}
 params['mode'] = 'free'
