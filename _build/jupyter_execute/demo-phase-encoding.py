@@ -35,7 +35,7 @@ params['moment_params'] = [[0, 0, 0, -1, -1, 11.75, 1.0e-3]] # Constraining for 
 G, T_min = get_min_TE(params, max_TE = 2, verbose = 1)
 print('Waveform duration =', round(T_min,2), 'ms')
 
-fig = plot_waveform_interactive(G, params, plot_eddy = False, plot_pns = False, width=585, height=430)
+fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
 
@@ -55,7 +55,7 @@ params['gmax'] = 20
 
 G, T_min = get_min_TE(params, max_TE = 2)
 print('Waveform duration =', round(T_min,2), 'ms')
-fig = plot_waveform_interactive(G, params, plot_eddy = False, plot_pns = False, width=585, height=430)
+fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
 
@@ -77,7 +77,7 @@ params['moment_params'].append([0, 1, 0, -1, -1, 0, 1.0e-3])
 G, T_min = get_min_TE(params, max_TE = 2.5)
 print('Waveform duration =', round(T_min,2), 'ms')
 
-fig = plot_waveform_interactive(G, params, plot_eddy = False, plot_pns = False, width=585, height=430)
+fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
 
@@ -100,7 +100,7 @@ params['moment_params'].append([0, 2, 0, -1, -1, 0, 1.0e-3])
 G, T_min = get_min_TE(params, max_TE = 2.6)
 print('Waveform duration =', round(T_min,2), 'ms')
 
-fig = plot_waveform_interactive(G, params, plot_eddy = False, plot_pns = False, width=585, height=430)
+fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
 
@@ -125,7 +125,7 @@ params['smax'] = 200.0
 G, T_min = get_min_TE(params, max_TE = 2)
 print('Waveform duration =', round(T_min,2), 'ms')
 
-fig = plot_waveform_interactive(G, params, plot_eddy = False, width=585, height=430)
+fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)
 display(HTML('fig.html'))
 
@@ -149,54 +149,6 @@ params['pns_thresh'] = 1.0
 
 G, T_min = get_min_TE(params, min_TE = 1.6, max_TE = 2.2)
 print('Waveform duration =', round(T_min,2), 'ms')
-
-fig = plot_waveform_interactive(G, params, plot_eddy = False, width=585, height=430)
-plot(fig, filename = 'fig.html', config = config)
-display(HTML('fig.html'))
-
-## Simple Phase Encode
-
-Generate a waveform with $M_0 = 11.74$, which is the phase encode required to encode 1mm resolution.
-
-params = {}
-params['mode'] = 'free'
-params['gmax']  = 50
-params['smax']  = 50.0
-params['moment_params']  = [[0, 0, 0, -1, -1, 11.74, 1.0e-3]]
-params['TE']  = 1.0
-params['dt']  = 20e-6
-
-G, dd = gropt.gropt(params)
-
-fig = plot_waveform_interactive(G, params, width=585, height=430)
-plot(fig, filename = 'fig.html', config = config)
-display(HTML('fig.html'))
-
-### Run TE finder for same waveform
-
-G_min, T_min = get_min_TE(params)
-
-fig = plot_waveform_interactive(G_min, params, width=585, height=430)
-plot(fig, filename = 'fig.html', config = config)
-display(HTML('fig.html'))
-
-## Flow comped phase encode
-
-Generate a waveform with $M_0 = 11.74$ and $M_1 = 0$.
-
-So the same phase encoding as the last waveform, but flow compensated.
-
-
-params = {}
-params['mode'] = 'free'
-params['gmax']  = 0.05
-params['smax']  = 50.0
-params['moment_params']  = [[0, 0, 0, -1, -1, 11.74, 1.0e-3]]
-params['moment_params'].append([0, 1, 0, -1, -1, 0, 1.0e-3])
-params['TE']  = 2.04
-params['dt']  = 20e-6
-
-G, dd = gropt.gropt(params)
 
 fig = plot_waveform_interactive(G, params, width=585, height=430)
 plot(fig, filename = 'fig.html', config = config)

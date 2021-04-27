@@ -7,14 +7,17 @@ import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
 from helper_utils import *
+from plotly.subplots import make_subplots
 
 
+# +
 def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], eddy_range = [1e-3,120,1000], width=900, height=550):
     current_trace = 0
     buttons_list = []
     steps = []
     updatemenus = []
     num_sliders = len(G_list)
+    fig = make_subplots(rows=5, cols=1)
     for G, params in zip(G_list, params_list):
         n_axis = params.get('Naxis', 1)
         num_traces = 2*n_axis + 5
@@ -38,12 +41,12 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
         elif diffmode > 0:
             fig_title = blabel
 
-        fig = go.Figure(layout=dict(xaxis=dict(title="$t [ms]$")))
+#         fig = go.Figure(layout=dict(xaxis=dict(title="$t [ms]$")))
         buttons = []
 
         # Gradient
         for i in range(n_axis):
-            fig.add_trace(go.Scatter(x=tt, y=G[i]*1000, showlegend=False))
+            fig.add_trace(go.Scatter(x=tt, y=G[i]*1000, showlegend=False), row=1, col=1)
         buttons.append(dict(label = "Gradient",
                        method = "update",
                        args = [{"visible": [True if x>= current_trace and x < current_trace + n_axis
@@ -55,11 +58,10 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
 
         # Slew
         for i in range(n_axis):
-            fig.add_trace(go.Scatter(x=tt[:-1], y=np.diff(G[i])/dt, visible=False, showlegend=False))
+            fig.add_trace(go.Scatter(x=tt[:-1], y=np.diff(G[i])/dt, visible=False, showlegend=False), row=2, col=1)
         buttons.append(dict(label = "Slew",
                        method = "update",
-                       args = [{"visible": [True if x>= current_trace and x < current_trace + n_axis
-                                            else False for x in range(num_traces*num_sliders)],
+                       args = [{"visible": [False] * (num_traces*num_sliders),
                                "showlegend":False},
                                {"shapes":[],
                                "xaxis": {"title": "$t [ms]$"}}]))
@@ -80,13 +82,13 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
                     mmt = mm[i]*1e9
                 if i == 2:
                     mmt = mm[i]*1e12
-            fig.add_trace(go.Scatter(x=tt, y=mmt, visible=False, name='$M_{%d}$'%i))
+            fig.add_trace(go.Scatter(x=tt, y=mmt, visible=False, name='$M_{%d}$'%i), row=3, col=1)
         buttons.append(dict(label = "Moments",
                        method = "update",
                        args = [{"visible": [True if x>= current_trace and x < current_trace + 3
                                             else False for x in range(num_traces*num_sliders)],
                                "showlegend":True},
-                               {"shapes":moment_lines,
+                               {"shapes": moment_lines,
                                "xaxis": {"title": "$Time [ms]$"}}]))
         current_trace += 3
 
@@ -97,7 +99,7 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
             lam = lam * 1.0e-3
             r = np.diff(np.exp(-np.arange(G[0].size+1)*dt/lam))[::-1] # TODO: 3-axis case, right now just assumes 1 axis
             all_e.append(100*r@G[0])
-        fig.add_trace(go.Scatter(x=all_lam, y=all_e, visible=False, showlegend=False))
+        fig.add_trace(go.Scatter(x=all_lam, y=all_e, visible=False, showlegend=False), row=4, col=1)
 
         eddy_draw = []
         for e in eddy_lines:
@@ -109,7 +111,7 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
                 line=dict(color="#D64B4B",
                     width=1,
                     dash="dot")))
-        eddy_draw.append({"type":"line", "x0":all_lam[0], "x1":all_lam[-1], "y0":0, "y1":0,
+        eddy_draw.append ({"type":"line", "x0":all_lam[0], "x1":all_lam[-1], "y0":0, "y1":0,
                           "line":{"color":"#777777", "width":1, "dash":"dash"}})
         buttons.append(dict(label = "Eddy",
                        method = "update",
@@ -127,7 +129,7 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
         pns_lines.append({"type":"line", "x0":tt[0], "x1":tt[-2], "y0":0, "y1":0,
                           "line":{"color":"#777777", "width":1, "dash":"dash"}})
         pns = np.abs(get_stim(G, dt))
-        fig.add_trace(go.Scatter(x=tt[:-1], y=pns, visible=False, showlegend=False))
+        fig.add_trace(go.Scatter(x=tt[:-1], y=pns, visible=False, showlegend=False), row=5, col=1)
         buttons.append(dict(label = "PNS",
                        method = "update",
                        args = [{"visible": [True if x>= current_trace and x < current_trace + 1
@@ -153,8 +155,8 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
         step = dict(
             method="update",
             label=blabel,
-            args=[{"visible": [False] * (num_traces*num_sliders),
-                  "updatemenus": update_menu}],  # layout attribute
+            args=[{"visible": [False] * (num_traces*num_sliders)}, 
+                  {"updatemenus": update_menu}],  # layout attribute
         )
         for j in range(n_axis):
             step["args"][0]["visible"][current_trace-num_traces+j] = True
@@ -172,5 +174,16 @@ def plot_waveform_sliders(G_list, params_list, suptitle = '', eddy_lines=[], edd
         autosize=False,
         margin=dict(t=50, b=50, l=0, r=50),
         template="plotly_white")
+    
+    for i in range(num_sliders):
+        gradient = dict(label = "Gradient",
+                       method = "update",
+                       args = [{"visible": [False] * (num_traces*num_sliders),
+                               "showlegend":False},
+                               {"shapes":[],
+                               "xaxis": {"title": "$t [ms]$"}}])
+        step['args'][1][num_traces*i] = True
+            
+        
     
     return fig

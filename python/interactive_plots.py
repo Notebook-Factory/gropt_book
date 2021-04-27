@@ -35,7 +35,7 @@ def plot_waveform_interactive(G, params, plot_moments = True, plot_eddy = True, 
     elif diffmode > 0:
         fig_title = blabel
         
-    fig = go.Figure(layout=dict(xaxis=dict(title="$t [ms]$")))
+    fig = go.Figure(layout=dict(xaxis=dict(title="t [ms]")))
     buttons = []
     
     # Gradient
@@ -47,7 +47,7 @@ def plot_waveform_interactive(G, params, plot_moments = True, plot_eddy = True, 
                                         else False for x in range(num_traces)],
                            "showlegend":False},
                            {"shapes":[],
-                           "xaxis": {"title": "$t [ms]$"}}]))
+                           "xaxis": {"title": "t [ms]"}}]))
     current_trace += n_axis
     
     # Slew
@@ -60,7 +60,7 @@ def plot_waveform_interactive(G, params, plot_moments = True, plot_eddy = True, 
                                             else False for x in range(num_traces)],
                                "showlegend":False},
                                {"shapes":[],
-                               "xaxis": {"title": "$t [ms]$"}}]))
+                               "xaxis": {"title": "t [ms]"}}]))
         current_trace += n_axis
             
     # Moments
@@ -79,14 +79,14 @@ def plot_waveform_interactive(G, params, plot_moments = True, plot_eddy = True, 
                     mmt = mm[i]*1e9
                 if i == 2:
                     mmt = mm[i]*1e12
-            fig.add_trace(go.Scatter(x=tt, y=mmt, visible=False, name='$M_{%d}$'%i))
+            fig.add_trace(go.Scatter(x=tt, y=mmt, visible=False, name='M%d'%i))
         buttons.append(dict(label = "Moments",
                        method = "update",
                        args = [{"visible": [True if x>= current_trace and x < current_trace + 3
                                             else False for x in range(num_traces)],
                                "showlegend":True},
                                {"shapes":moment_lines,
-                               "xaxis": {"title": "$Time [ms]$"}}]))
+                               "xaxis": {"title": "Time [ms]"}}]))
         current_trace += 3
             
     # Eddy
@@ -117,7 +117,7 @@ def plot_waveform_interactive(G, params, plot_moments = True, plot_eddy = True, 
                                             else False for x in range(num_traces)],
                                "showlegend":False},
                                {"shapes":eddy_draw,
-                               'xaxis': {'title': "$\lambda [ms]$"}}]))
+                               'xaxis': {'title': "lambda [ms]"}}]))
         current_trace += 1
     
     # PNS
@@ -135,7 +135,7 @@ def plot_waveform_interactive(G, params, plot_moments = True, plot_eddy = True, 
                                             else False for x in range(num_traces)],
                                "showlegend":False},
                                {"shapes":pns_lines,
-                               "xaxis": {"title": "$Time [ms]$"}}]))
+                               "xaxis": {"title": "Time [ms]"}}]))
         current_trace += 1
         
     # Layout
